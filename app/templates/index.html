@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if count != 0 %}
+        <h2>Latest records: </h2>
+            {% for record in records %}
+                <div>
+                    <p>
+                        {{ record.timestamp }}:
+                        {{ record.author.username }}
+                        recorded
+                        <b>{{ record.amount }}</b>.
+                        {{ record.comment }}
+                    </p>
+                </div>
+            {% endfor %}
+    {% else %}
+        <h2>No records found...</h2>
+    {% endif %}
+
+{% endblock %}
