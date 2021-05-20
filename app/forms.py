@@ -9,8 +9,8 @@ from app.models import User
 # class LoginForm of FlaskForm, that is provided with some variables:
 class LoginForm(FlaskForm):
     # each form field is provided with it's label and some validators:
-    username = StringField('User Name', validators=[DataRequired()])
-    password = PasswordField('Pass Word', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign in')
 
