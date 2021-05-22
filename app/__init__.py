@@ -10,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 # and then run 'flask db upgrade' - this will apply the migration script
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
@@ -25,6 +26,9 @@ migrate = Migrate(app, db)
 
 # login uses the LoginManager class from flask-login
 login = LoginManager(app)
+
+# init bootstrap
+bootstrap = Bootstrap(app)
 
 # to handle permissions, Flask-Login needs to know what is the view function
 # that handles logins

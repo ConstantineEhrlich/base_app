@@ -16,10 +16,10 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('User Name', validators=[DataRequired()])
-    email = StringField('E-mail', validators=[DataRequired(), Email()])
-    password = PasswordField('Pass Word', validators=[DataRequired()])
-    password_check = PasswordField('Repeat PW', validators=[DataRequired(), EqualTo('password')])
+    username = StringField('User Name:', validators=[DataRequired()])
+    email = StringField('E-mail:', validators=[DataRequired(), Email()])
+    password = PasswordField('Password:', validators=[DataRequired()])
+    password_check = PasswordField('Repeat password:', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     # validate_<field_name> -- WTForms takes those as custom validators
