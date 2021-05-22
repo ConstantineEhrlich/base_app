@@ -23,7 +23,7 @@
 
 
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('index') }}">
                 <img
@@ -50,7 +50,7 @@
                         <a class="nav-link" href="{{ url_for('index') }}">Latest</a>
                     {% if current_user.is_anonymous %}
                         <a class="nav-link" href="{{ url_for('login') }}">Sign In</a>
-                        ><a class="nav-link" href="{{ url_for('register') }}">Registration</a>
+                        <a class="nav-link" href="{{ url_for('register') }}">Registration</a>
                     {% else %}
                         <a class="nav-link" href="{{ url_for('newrecord') }}">New Record</a>
                         <a class="nav-link" href="{{ url_for('profiles') }}">Profiles</a>
