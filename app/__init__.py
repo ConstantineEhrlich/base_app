@@ -10,7 +10,6 @@ from flask_sqlalchemy import SQLAlchemy
 # and then run 'flask db upgrade' - this will apply the migration script
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
@@ -31,9 +30,6 @@ login = LoginManager(app)
 # that handles logins
 # The 'login' value is the function (or endpoint) name for the login view.
 login.login_view = 'login'
-
-# Initialize bootstrap
-bootstrap = Bootstrap(app)
 
 
 # then, we are importing the routes and models from the app
