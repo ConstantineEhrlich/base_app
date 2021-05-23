@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block content %}
-
+{% block app_content %}
+    <h2>User profiles:</h2>
     {% for user in users %}
-        <p>User: <a href="/profiles/{{ user.username }}">{{ user.username }}</a>, Email: {{ user.email }}</p>
+        <p><a href="/profiles/{{ user.username }}">{{ user.username }}</a>, Email: {{ user.email }}</p>
     {% endfor %}
 
 {% endblock %}

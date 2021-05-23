@@ -1,54 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous">
 
-    {% if title %}
-    <title>{{ title }} - Application</title>
-    {% else %}
-    <title>Application</title>
-    {% endif %}
+    <title>
+        {% block title %}
+            {% if title %}
+                {{ title }} - JetBucket
+            {% else %}
+                JetBucket
+            {% endif %}
+        {% endblock %}
+    </title>
+
+</head>
+
+
+{% block navbar %}
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='jetbucket.svg') }}"
+                        alt=""
+                        class="d-inline-block align-text-center"
+                        width="24"
+                        height="30">
+                JetBucket
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('index') }}">Latest</a>
+                    {% if current_user.is_anonymous %}
+                        <a class="nav-link" href="{{ url_for('login') }}">Sign In</a>
+                        <a class="nav-link" href="{{ url_for('register') }}">Registration</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('newrecord') }}">New Record</a>
+                        <a class="nav-link" href="{{ url_for('profiles') }}">Profiles</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </nav>
+{% endblock %}
 
 <body>
-    <div>
-        {% if current_user.is_authenticated %}
-             Logged in as {{ current_user.username }} ||
+{% block content %}
+    <div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
         {% endif %}
-        Navigation:
-        <a href="{{ url_for('index') }}">Home</a> |
+    {% endwith %}
+{% endblock %}
 
-        {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Sign In</a> |
-            <a href="{{ url_for('register') }}">Registration</a>
-        {% else %}
-            <a href="{{ url_for('newrecord') }}">New Record</a> |
-            <a href="{{ url_for('profiles') }}">Profiles</a> |
-            <a href="{{ url_for('logout') }}">Sign Out</a>
-        {% endif %}
-    </div>
-
-    {% if title %}
-        <h1> {{ title }} </h1>
-    {% else %}
-        <h1>Application</h1>
-    {% endif %}
-
-    <hr>
-    <div>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-                <hr>
-            {% endif %}
-        {% endwith %}
-    </div>
-
-    {%block content %}{% endblock %}
+{% block app_content %}{% endblock %}
 
 
-    <hr>
-    <div><p><#-[ хххх ]-#></p></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
 </html>

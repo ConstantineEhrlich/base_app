@@ -27,13 +27,13 @@ migrate = Migrate(app, db)
 # login uses the LoginManager class from flask-login
 login = LoginManager(app)
 
+# init bootstrap
+bootstrap = Bootstrap(app)
+
 # to handle permissions, Flask-Login needs to know what is the view function
 # that handles logins
 # The 'login' value is the function (or endpoint) name for the login view.
 login.login_view = 'login'
-
-# Initialize bootstrap
-bootstrap = Bootstrap(app)
 
 
 # then, we are importing the routes and models from the app
